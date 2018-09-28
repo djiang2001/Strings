@@ -10,13 +10,33 @@
 
 int main() {
 
-  char a[10] = "Hello";
-  char b[10] = "Goodbye";
-  char c[10] = "Friend";
+  char a[20] = "Hello";
+  char b[20] = "Goodbye";
+  char c[20] = "Friend";
+  char d[20] = "15";
+  char e[20] = "20";
   //strlen //strcpy //strncat //strcmp //strchr
+  printf("\n");
   printf("Testing strlen: %ld \n", strlen(a));
-  printf("Testing strcpy(a , b), a: %s \n", strcpy(a , b));
+  printf("Original a: %s", a);
+  printf("\n");
+  printf("Testing strcpy(a , b), new value of a: %s \n", strcpy(a , b));
   printf("Running strncat(b , c , 3)...");
+  printf("\n");
   strncat(b, c, 3);
   printf("New value of b: %s \n", b);
+
+  int comparison;
+  comparison = strcmp( d , e );
+  if (comparison > 0) {
+    printf("d is greater than e");
+  }
+  else if (comparison < 0 ) {
+    printf("d is less than e");
+  }
+  else {
+    printf("d is equal to e");
+  }
+
+  printf("\n");
 }
