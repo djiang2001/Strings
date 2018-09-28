@@ -40,3 +40,11 @@ int main() {
 
   printf("\n");
 }
+
+int mystrlen(char * s){
+  int count = 0;
+  while(*(s + count)){
+    count++;
+  }
+  return count;
+}
