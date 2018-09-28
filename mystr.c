@@ -15,8 +15,17 @@ int main() {
   char c[10] = "Friend";
   //strlen //strcpy //strncat //strcmp //strchr
   printf("Testing strlen: %ld \n", strlen(a));
+  printf("Testing mystrlen: %d \n", mystrlen(a));
   printf("Testing strcpy(a , b), a: %s \n", strcpy(a , b));
   printf("Running strncat(b , c , 3)...");
   strncat(b, c, 3);
   printf("New value of b: %s \n", b);
+}
+
+int mystrlen(char * s){
+  int count = 0;
+  while(*(s + count)){
+    count++;
+  }
+  return count;
 }
