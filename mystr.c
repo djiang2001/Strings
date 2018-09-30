@@ -15,9 +15,9 @@ int main(){
   char s4[20] = "15";
   char s5[20] = "20";
   //strlen //strcpy //strncat //strcmp //strchr
-  printf("s1: %s \n s2: %s \n s3: %s \n s4: %s s5:%s \n");
-  printf("Testing strlen s1 \n [standard]: %ld \n [ours]: %d \n ", strlen(s1),mystrlen(s1));
-  printf("Testing strcpy(s1 ,s2), \n [standard]:%s \n [ours]: %s \n ", strcpy(s1 , s2), mystrcpy(s1,s2));
+  printf("s1: %s \n s2: %s \n s3: %s \n s4: %s \n s5:%s \n",s1,s2,s3,s4,s5);
+  printf("Testing strlen s1: \n [standard]: %ld \n [ours]: %d \n ", strlen(s1),mystrlen(s1));
+  printf("Testing strcpy(s1 ,s2): \n [standard]:%s \n [ours]: %s \n ", strcpy(s1 , s2), mystrcpy(s1,s2));
   printf("Testing strncat: \n [standard]: %s \n [ours]: %s \n ", strncat(s1,s2,3), mystrncat(s1,s2,3));
   printf("Testing strcmp: \n [standard]: %d \n [ours]: %d \n ", strcmp(s1,s2),mystrcmp(s1,s2));
   printf("Testing strchr:\n [standard]: %s \n [ours]: %s \n ", strchr(s1,3), mystrchr(s1,3));
