@@ -20,7 +20,8 @@ int main(){
   printf("Testing strcpy(s1 ,s2), \n [standard]:%s \n [ours]: %s \n ", strcpy(s1 , s2), mystrcpy(s1,s2));
   printf("Testing strncat: \n [standard]: %s \n [ours]: %s \n ", strncat(s1,s2,3), mystrncat(s1,s2,3));
   printf("Testing strcmp: \n [standard]: %d \n [ours]: %d \n ", strcmp(s1,s2),mystrcmp(s1,s2));
-  printf("Testing strchr:\n [standard]: %c \n [ours]: %c \n ", strchr(s1,3), mystrchr(s1,3));
+  printf("Testing strchr:\n [standard]: %s \n [ours]: %s \n ", strchr(s1,3), mystrchr(s1,3));
+  printf("Testing strstr: \n [standard]: %s \n [ours]: %s \n ", strstr(s1,s2),mystrstr(s1,s2));
 }
 
 int mystrlen( char *chr ) {
@@ -69,18 +70,16 @@ char * mystrncat( char *dest, char *source, int n) {
 }
 
 int mystrcmp( char *s1, char *s2 ) {
-
-  int total1 = 0;
-  int total2 = 0;
-
-  for (int i = 0 ; i < mystrlen(s1) ; i++) {
-    total1 += (int)s1[i];
+  while((*s1 && *s2) && (*s1 == *s2)){
+    s1++;
+    s2++;
   }
-  for (int i = 0 ; i < mystrlen(s2) ; i++) {
-    total2 += (int)s2[i];
-  }
-  return total1 - total2;
 
+  if(*s1 == *s2){
+    return 0;
+  }else{
+    return *s1 - *s2;
+  }
 }
 
 char * mystrchr( char *s, char c) {
