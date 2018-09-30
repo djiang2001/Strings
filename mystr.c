@@ -10,19 +10,16 @@
 
 int main() {
 
-  char a[20] = "Hello";
-  char b[20] = "Goodbye";
-  char c[20] = "Friend";
-  char d[20] = "15";
-  char e[20] = "20";
+  char s1[20] = "Hello";
+  char s2[20] = "Goodbye";
+  char s3[20] = "Friend";
+  char s4[20] = "15";
+  char s5[20] = "20";
   //strlen //strcpy //strncat //strcmp //strchr
-  printf("\n");
-  printf("Testing strlen: %ld \n", strlen(a));
-  printf("Original a: %s", a);
-  printf("\n");
-  printf("Testing strcpy(a , b), new value of a: %s \n", strcpy(a , b));
-  printf("Running strncat(b , c , 3)...");
-  printf("\n");
+  printf("s1: %s \n s2: %s \n s3: %s \n s4: %s s5:%s \n");
+  printf("Testing strlen s1 [standard]: %ld \n [ours]: %d", strlen(s1),mystrlen(s1));
+  printf("Testing strcpy(s1 ,s2), [standard]:%s \n [ours]: %s \n", strcpy(s1 , s2), mystrcpy(s1,s2));
+  printf("Running strncat(b , c , 3)... \n");
   strncat(b, c, 3);
   printf("New value of b: %s \n", b);
 
