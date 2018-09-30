@@ -48,3 +48,42 @@ int mystrlen(char * s){
   }
   return count;
 }
+
+char * mystrcpy(char *dest,char *source );{
+  char *start = dest;
+  while(*source){
+    *dest = *source;
+    dest++;
+    source++
+  }
+  *dest = '\0';
+  return start;
+}
+
+char *mystrncat(char *dest, char *source, int n){
+  char *start = dest;
+  while(*dest){
+    dest++;
+  }
+  while(n){
+    *dest = *source;
+    dest++;
+    source++;
+    n--;
+  }
+  return start;
+}
+
+int mystrcmp(char *s1,char *s2){
+  while((*s1 && *s2) && (*s1== *s2)){
+    s1++;
+    s2++;
+  }
+  if(*s1 == s2){
+    return 0;
+  }else
+    {
+      return *s1 - s2;
+    }
+}
+
