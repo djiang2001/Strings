@@ -1,8 +1,11 @@
-all:mystr.o
-	gcc -o Test mystr.o
+all: mystr.o
+	gcc -o mystr mystr.o
 
-mystr.o: mystr.c mystr.h
+mystr.o: mystr.h mystr.c
 	gcc -c mystr.c
 
 run:
-	./Test
+	./mystr
+
+clean:
+	rm *.o

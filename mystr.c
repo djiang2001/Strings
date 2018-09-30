@@ -5,11 +5,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "mystr.h"
 #include <string.h>
+#include "mystr.h"
 
-int main() {
-
+int main(){
   char s1[20] = "Hello";
   char s2[20] = "Goodbye";
   char s3[20] = "Friend";
@@ -17,70 +16,97 @@ int main() {
   char s5[20] = "20";
   //strlen //strcpy //strncat //strcmp //strchr
   printf("s1: %s \n s2: %s \n s3: %s \n s4: %s s5:%s \n");
-  printf("Testing strlen s1 [standard]: %ld \n [ours]: %d", strlen(s1),mystrlen(s1));
-  printf("Testing strcpy(s1 ,s2), [standard]:%s \n [ours]: %s \n", strcpy(s1 , s2), mystrcpy(s1,s2));
-  printf("Running strncat(b , c , 3)... \n");
-  strncat(b, c, 3);
-  printf("New value of b: %s \n", b);
-
-  int comparison;
-  comparison = strcmp( d , e );
-  if (comparison > 0) {
-    printf("d is greater than e");
-  }
-  else if (comparison < 0 ) {
-    printf("d is less than e");
-  }
-  else {
-    printf("d is equal to e");
-  }
-
-  printf("\n");
+  printf("Testing strlen s1 \n [standard]: %ld \n [ours]: %d \n ", strlen(s1),mystrlen(s1));
+  printf("Testing strcpy(s1 ,s2), \n [standard]:%s \n [ours]: %s \n ", strcpy(s1 , s2), mystrcpy(s1,s2));
+  printf("Testing strncat: \n [standard]: %s \n [ours]: %s \n ", strncat(s1,s2,3), mystrncat(s1,s2,3));
+  printf("Testing strcmp: \n [standard]: %d \n [ours]: %d \n ", strcmp(s1,s2),mystrcmp(s1,s2));
+  printf("Testing strchr:\n [standard]: %c \n [ours]: %c \n ", strchr(s1,3), mystrchr(s1,3));
 }
 
-int mystrlen(char * s){
-  int count = 0;
-  while(*(s + count)){
-    count++;
+int mystrlen( char *chr ) {
+  int counter = 0;
+  while (*chr) {
+    counter++;
+    chr++;
   }
-  return count;
+  return counter;
 }
 
-char * mystrcpy(char *dest,char *source );{
-  char *start = dest;
-  while(*source){
-    *dest = *source;
-    dest++;
-    source++
+char * mystrcpy( char *dest, char *source ) {
+
+  for(int i = 0 ; i < mystrlen(source) ; i++) {
+    dest[i] = source[i];
   }
-  *dest = '\0';
-  return start;
+  return dest;
+
 }
 
-char *mystrncat(char *dest, char *source, int n){
-  char *start = dest;
-  while(*dest){
-    dest++;
+char * mystrncpy( char *dest, char *source, int n) {
+
+  for (int i = 0 ; i < n ; i++) {
+    dest[i] = source[i];
   }
-  while(n){
-    *dest = *source;
-    dest++;
-    source++;
-    n--;
-  }
-  return start;
+  return dest;
+
 }
 
-int mystrcmp(char *s1,char *s2){
-  while((*s1 && *s2) && (*s1== *s2)){
-    s1++;
-    s2++;
+char * mystrcat( char *dest, char *source ) {
+
+  for (int i = 0 ; i < mystrlen(source) ; i++) {
+    dest[mystrlen(dest)] = source[i];
   }
-  if(*s1 == s2){
-    return 0;
-  }else
-    {
-      return *s1 - s2;
+  return dest;
+
+}
+
+char * mystrncat( char *dest, char *source, int n) {
+
+  for (int i = 0 ; i < n ; i++) {
+    dest[mystrlen(dest)] = source[i];
+  }
+  return dest;
+
+}
+
+int mystrcmp( char *s1, char *s2 ) {
+
+  int total1 = 0;
+  int total2 = 0;
+
+  for (int i = 0 ; i < mystrlen(s1) ; i++) {
+    total1 += (int)s1[i];
+  }
+  for (int i = 0 ; i < mystrlen(s2) ; i++) {
+    total2 += (int)s2[i];
+  }
+  return total1 - total2;
+
+}
+
+char * mystrchr( char *s, char c) {
+  while (*s) {
+    if (*s == c) {
+      return s;
     }
+    s++;
+  }
+  return NULL;
 }
 
+char * mystrstr( char *s1, char * s2 ) {
+
+  for (int i = 0 ; i <= mystrlen(s1) - mystrlen(s2) ; i++) {
+    int truth = 1;
+    int counter = 0;
+    while (counter < mystrlen(s2)) {
+      if (*(s1 + counter + i) != *(s2 + counter)) {
+        truth = 0;
+      }
+      counter++;
+    }
+    if (truth == 1) {
+      return s1 + i;
+    }
+  }
+  return NULL;
+}
