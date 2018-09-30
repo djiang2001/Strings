@@ -6,45 +6,101 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "mystr.h"
-#include <string.h>
+
+int mystrlen( char *chr ) {
+
+  int counter = 0;
+  while (*chr) {
+    counter++;
+    chr++;
+  }
+  return counter;
+
+}
+
+char * mystrcpy( char *dest, char *source ) {
+
+  for(int i = 0 ; i < mystrlen(source) ; i++) {
+    dest[i] = source[i];
+  }
+  return dest;
+
+}
+
+char * mystrncpy( char *dest, char *source, int n) {
+
+  for (int i = 0 ; i < n ; i++) {
+    dest[i] = source[i];
+  }
+  return dest;
+
+}
+
+char * mystrcat( char *dest, char *source ) {
+
+  for (int i = 0 ; i < mystrlen(source) ; i++) {
+    dest[mystrlen(dest)] = source[i];
+  }
+  return dest;
+
+}
+
+char * mystrncat( char *dest, char *source, int n) {
+
+  for (int i = 0 ; i < n ; i++) {
+    dest[mystrlen(dest)] = source[i];
+  }
+  return dest;
+
+}
+
+int mystrcmp( char *s1, char *s2 ) {
+
+  int total1 = 0;
+  int total2 = 0;
+
+  for (int i = 0 ; i < mystrlen(s1) ; i++) {
+    total1 += (int)s1[i];
+  }
+  for (int i = 0 ; i < mystrlen(s2) ; i++) {
+    total2 += (int)s2[i];
+  }
+  return total1 - total2;
+
+}
+
+char * mystrchr( char *s, char c) {
+
+  while (*s) {
+    if (*s == c) {
+      return s;
+    }
+    s++;
+  }
+  return NULL;
+}
+
+char * mystrstr( char *s1, char * s2 ) {
+
+  for (int i = 0 ; i <= mystrlen(s1) - mystrlen(s2) ; i++) {
+    int truth = 1;
+    int counter = 0;
+    while (counter < mystrlen(s2)) {
+      if (*(s1 + counter + i) != *(s2 + counter)) {
+        truth = 0;
+      }
+      counter++;
+    }
+    if (truth == 1) {
+      return s1 + i;
+    }
+  }
+  return NULL;
+}
+
 
 int main() {
 
-  char a[20] = "Hello";
-  char b[20] = "Goodbye";
-  char c[20] = "Friend";
-  char d[20] = "15";
-  char e[20] = "20";
-  //strlen //strcpy //strncat //strcmp //strchr
-  printf("\n");
-  printf("Testing strlen: %ld \n", strlen(a));
-  printf("Original a: %s", a);
-  printf("\n");
-  printf("Testing strcpy(a , b), new value of a: %s \n", strcpy(a , b));
-  printf("Running strncat(b , c , 3)...");
-  printf("\n");
-  strncat(b, c, 3);
-  printf("New value of b: %s \n", b);
+  
 
-  int comparison;
-  comparison = strcmp( d , e );
-  if (comparison > 0) {
-    printf("d is greater than e");
-  }
-  else if (comparison < 0 ) {
-    printf("d is less than e");
-  }
-  else {
-    printf("d is equal to e");
-  }
-
-  printf("\n");
-}
-
-int mystrlen(char * s){
-  int count = 0;
-  while(*(s + count)){
-    count++;
-  }
-  return count;
 }
