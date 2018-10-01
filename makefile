@@ -4,8 +4,5 @@ all: mystr.o
 mystr.o: mystr.h mystr.c
 	gcc -c mystr.c
 
-run:
-	./mystr
-
 clean:
 	rm *.o
